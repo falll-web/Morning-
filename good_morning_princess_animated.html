@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Good Morning Princess 🌤️💗</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+body{background:#ffeef7;color:#633b52}
+.book{width:100%;height:100%;overflow:hidden;position:relative}
+.pages{display:flex;width:700%;height:100%;transition:transform .65s cubic-bezier(.77,0,.18,1)}
+.page{width:14.2857%;height:100%;flex:none;position:relative;overflow-y:auto;overflow-x:hidden;padding:28px 20px 90px;text-align:center}
+.page::-webkit-scrollbar{width:0}
+.p1{background:linear-gradient(180deg,#9edcff,#fff3d0 65%,#ffd8e8)}
+.p2{background:linear-gradient(180deg,#fff8fc,#ffe1ee)}
+.p3{background:linear-gradient(180deg,#d9f4ff,#fff)}
+.p4{background:linear-gradient(180deg,#fff1d9,#ffe6ef)}
+.p5{background:linear-gradient(180deg,#ffe4ef,#f7e8ff)}
+.p6{background:linear-gradient(180deg,#e5f7ff,#fff0f6)}
+.p7{background:linear-gradient(180deg,#ffd7e8,#fff3bf)}
+
+.sun{font-size:76px;animation:float 3s ease-in-out infinite;margin-top:25px}
+.cloud{position:absolute;font-size:48px;animation:cloud 10s linear infinite;opacity:.85}
+.c1{top:12%;left:-60px}.c2{top:25%;right:-60px;animation-delay:3s}
+h1{font-size:clamp(34px,10vw,64px);margin:12px 0;color:#ff5f9a;text-shadow:2px 3px #fff}
+h2{font-size:30px;margin:15px 0;color:#ff639b}
+p{font-size:18px;line-height:1.7;margin:12px auto;max-width:600px}
+.card{max-width:600px;margin:20px auto;padding:25px;background:#ffffffc9;border-radius:28px;box-shadow:0 10px 30px #9e638b2b;backdrop-filter:blur(5px)}
+.btn{border:0;background:#ff70a7;color:white;font-weight:800;font-size:16px;padding:13px 22px;border-radius:999px;margin:8px;box-shadow:0 7px 0 #d84d85;cursor:pointer}
+.btn:active{transform:translateY(5px);box-shadow:0 2px 0 #d84d85}
+.nav{position:fixed;z-index:20;bottom:18px;left:0;right:0;text-align:center}
+.nav button{width:52px;height:52px;border:0;border-radius:50%;margin:0 10px;background:#ffffffdd;color:#ff5795;font-size:24px;box-shadow:0 5px 18px #713e5725}
+.stickers{font-size:38px;margin:15px}
+.alarm{background:#20212a;color:white;border-radius:30px;padding:25px;max-width:360px;margin:25px auto;box-shadow:0 15px 35px #0002}
+.time{font-size:58px;font-weight:800}
+.polaroids{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;margin:20px auto;max-width:650px}
+.photo{width:145px;background:white;padding:8px 8px 18px;box-shadow:0 8px 18px #65334b30;transform:rotate(-3deg)}
+.photo:nth-child(2){transform:rotate(4deg)}
+.photo:nth-child(3){transform:rotate(-5deg)}
+.photo:nth-child(4){transform:rotate(3deg)}
+.photo img{width:100%;height:145px;object-fit:cover;border-radius:5px;background:#ffd5e5}
+.photo span{display:block;margin-top:8px;font-size:13px;font-weight:700}
+.reason{padding:16px;margin:10px auto;border-radius:20px;background:#ffffffb8;max-width:500px;animation:pop .5s both}
+.gamebox{max-width:500px;margin:25px auto;background:#ffffffd8;padding:28px;border-radius:30px}
+.answer{display:block;width:90%;max-width:360px;margin:12px auto}
+#gameMsg{min-height:35px;font-weight:800;color:#ff4f8c}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:10;display:none}
+.confetti span{position:absolute;font-size:25px;animation:fall 3s linear infinite}
+@keyframes float{50%{transform:translateY(-15px) rotate(4deg)}}
+@keyframes cloud{to{transform:translateX(calc(100vw + 180px))}}
+@keyframes pop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+@keyframes fall{from{transform:translateY(-10vh) rotate(0)}to{transform:translateY(110vh) rotate(500deg)}}
+
+/* ===== EXTRA CUTE ANIMATIONS ===== */
+body::before{
+  content:"";
+  position:fixed; inset:0; pointer-events:none; z-index:2;
+  background:
+    radial-gradient(circle at 15% 20%, #fff8 0 3px, transparent 4px),
+    radial-gradient(circle at 80% 35%, #fff8 0 4px, transparent 5px),
+    radial-gradient(circle at 55% 80%, #fff7 0 3px, transparent 4px);
+  background-size:180px 180px,230px 230px,200px 200px;
+  animation:sparkleBg 7s linear infinite;
+}
+.page > *{animation:pageItem .75s both}
+.page h1,.page h2{animation:titleBounce .9s both}
+.page .card,.page .alarm,.page .gamebox{animation:cardIn .8s .12s both}
+.stickers{animation:wobble 2.5s ease-in-out infinite}
+.stickers::after{
+  content:"✨"; display:inline-block; margin-left:10px;
+  animation:twinkle 1.1s ease-in-out infinite alternate;
+}
+.btn{transition:transform .2s, box-shadow .2s, filter .2s}
+.btn:hover{transform:translateY(-4px) scale(1.04);filter:saturate(1.15);box-shadow:0 10px 22px #d84d8566}
+.nav button{transition:transform .2s, background .2s}
+.nav button:hover{transform:scale(1.14) rotate(-5deg);background:#fff}
+.photo{
+  animation:photoFloat 3s ease-in-out infinite;
+  transition:transform .25s, box-shadow .25s;
+}
+.photo:hover{
+  transform:rotate(0deg) scale(1.08) translateY(-8px)!important;
+  box-shadow:0 18px 30px #65334b45;
+  z-index:3;
+}
+.photo:nth-child(2){animation-delay:.4s}
+.photo:nth-child(3){animation-delay:.8s}
+.photo:nth-child(4){animation-delay:1.2s}
+.reason{animation:reasonIn .65s both}
+.reason:nth-child(2){animation-delay:.1s}.reason:nth-child(3){animation-delay:.2s}
+.reason:nth-child(4){animation-delay:.3s}.reason:nth-child(5){animation-delay:.4s}
+.alarm{animation:alarmPulse 2s ease-in-out infinite}
+.time{animation:timeBounce 1s ease-in-out infinite}
+.answer{animation:answerFloat 2s ease-in-out infinite}
+.answer:nth-of-type(2){animation-delay:.2s}.answer:nth-of-type(3){animation-delay:.4s}
+.sun{filter:drop-shadow(0 0 12px #ffd85c99)}
+.confetti{overflow:hidden}
+.confetti span{animation:fallCute 3s linear infinite!important}
+#surpriseMsg h2{animation:surprisePop 1s cubic-bezier(.17,.89,.32,1.49) both}
+#surpriseMsg{animation:heartPulse 1.5s ease-in-out infinite}
+@keyframes sparkleBg{
+  0%{transform:translateY(0) rotate(0deg);opacity:.7}
+  50%{opacity:1}100%{transform:translateY(-25px) rotate(8deg);opacity:.7}
+}
+@keyframes pageItem{
+  from{opacity:0;transform:translateY(25px) scale(.96)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes titleBounce{
+  0%{opacity:0;transform:translateY(-25px) scale(.8)}
+  70%{transform:translateY(5px) scale(1.04)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes cardIn{
+  from{opacity:0;transform:translateY(35px) scale(.92) rotate(-1deg)}
+  to{opacity:1;transform:translateY(0) scale(1) rotate(0)}
+}
+@keyframes wobble{
+  0%,100%{transform:rotate(0) translateY(0)}
+  25%{transform:rotate(-3deg) translateY(-3px)}
+  75%{transform:rotate(3deg) translateY(-5px)}
+}
+@keyframes twinkle{from{transform:scale(.75) rotate(-15deg);opacity:.45}to{transform:scale(1.3) rotate(15deg);opacity:1}}
+@keyframes photoFloat{
+  0%,100%{translate:0 0}
+  50%{translate:0 -7px}
+}
+@keyframes reasonIn{
+  from{opacity:0;transform:translateX(-35px) rotate(-2deg)}
+  to{opacity:1;transform:translateX(0) rotate(0)}
+}
+@keyframes alarmPulse{
+  0%,100%{box-shadow:0 15px 35px #0002}
+  50%{box-shadow:0 15px 35px #ff5f9a55}
+}
+@keyframes timeBounce{50%{transform:scale(1.08) rotate(-2deg)}}
+@keyframes answerFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes fallCute{
+  from{transform:translateY(-12vh) rotate(0) scale(.7);opacity:0}
+  15%{opacity:1}
+  to{transform:translateY(115vh) rotate(540deg) scale(1.15);opacity:1}
+}
+@keyframes surprisePop{
+  0%{opacity:0;transform:scale(.2) rotate(-10deg)}
+  65%{transform:scale(1.18) rotate(3deg)}
+  100%{opacity:1;transform:scale(1) rotate(0)}
+}
+@keyframes heartPulse{
+  50%{transform:scale(1.025)}
+}
+
+@media(max-width:500px){.page{padding-top:18px}.photo{width:125px}.photo img{height:125px}p{font-size:16px}}
+
+.floating-hearts{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.floating-hearts span{
+  position:absolute;bottom:-40px;font-size:20px;opacity:.65;
+  animation:heartRise linear infinite;
+}
+@keyframes heartRise{
+  0%{transform:translateY(0) translateX(0) rotate(0);opacity:0}
+  15%{opacity:.7}50%{transform:translateY(-50vh) translateX(20px) rotate(20deg)}
+  100%{transform:translateY(-115vh) translateX(-25px) rotate(-25deg);opacity:0}
+}
+
+</style>
+</head>
+<body>
+
+<div class="floating-hearts" aria-hidden="true"></div>
+<div class="book">
+<div class="pages" id="pages">
+
+<section class="page p1">
+<div class="cloud c1">☁️</div><div class="cloud c2">☁️</div>
+<div class="sun">🌤️</div>
+<div class="stickers">🐣 💗 🧸</div>
+<h1>GOOD MORNING!</h1>
+<div class="card">
+<h2>Haiii, princess cantik 🌷</h2>
+<p>Bangun donggg 😭☀️ Ada pesan kecil yang sengaja disiapin khusus buat kamu pagi ini.</p>
+<button class="btn" onclick="nextPage()">Aku udah bangun 😴👉🏻</button>
+</div>
+</section>
+
+<section class="page p2">
+<div class="stickers">🌸 ☕ 💕</div>
+<h2>Selamat Pagiii, Sayang 🤍</h2>
+<div class="card">
+<p>Semoga pagi ini kamu bangun dengan hati yang tenang, senyum yang manis, dan mood yang bagus.</p>
+<p>Kalau hari ini terasa berat, ingat yaa: kamu nggak harus sempurna. Jalani pelan-pelan, yang penting tetap semangat. 🥹</p>
+<p><b>Dan jangan lupa...</b> ada seseorang yang selalu berharap harimu baik-baik aja. 💗</p>
+</div>
+<div class="stickers">🫶🏻 🌈 🐰</div>
+</section>
+
+<section class="page p3">
+<h2>🚨 ALARM KHUSUS PACAR 🚨</h2>
+<div class="alarm">
+<div class="time">07:00</div>
+<p>⚠️ TARGET MASIH DI KASUR ⚠️</p>
+<p>Orang cantik terdeteksi belum bangun!</p>
+<button class="btn" onclick="wake('yes')">Aku udah bangun 😇</button>
+<button class="btn" onclick="wake('no')">5 menit lagi 😴</button>
+<div id="alarmMsg"></div>
+</div>
+<div class="stickers">😭 🛌 ☀️</div>
+</section>
+
+<section class="page p4">
+<h2>📸 Morning Memories</h2>
+<p>Beberapa potongan kecil yang bikin pagi jadi lebih manis 💗</p>
+<div class="polaroids">
+<div class="photo"><img src="foto1.jpg" alt="Foto 1"><span>Si paling cantik 🌷</span></div>
+<div class="photo"><img src="foto2.jpg" alt="Foto 2"><span>Si paling bikin kangen 🥹</span></div>
+<div class="photo"><img src="foto3.jpg" alt="Foto 3"><span>Senyumnya bahaya 😭</span></div>
+<div class="photo"><img src="foto4.jpg" alt="Foto 4"><span>Favoritku 💕</span></div>
+</div>
+<p><small>💡 Ganti foto1.jpg sampai foto4.jpg dengan foto kalian.</small></p>
+</section>
+
+<section class="page p5">
+<div class="stickers">💖 ✨ 🌷</div>
+<h2>Kenapa Kamu Harus Senyum Hari Ini?</h2>
+<div class="reason">1. Karena kamu berharga banget. 🥹</div>
+<div class="reason">2. Karena senyum kamu bikin suasana jadi lebih indah. 🌸</div>
+<div class="reason">3. Karena hari ini masih punya banyak hal baik yang bisa terjadi. ☀️</div>
+<div class="reason">4. Dan karena... aku kangen kamu lagi. 😭💗</div>
+<div class="card"><p><b>Jadi sekarang:</b><br>tarik napas → senyum → semangat! 🫶🏻</p></div>
+</section>
+
+<section class="page p6">
+<h2>🎮 MINI GAME PAGI</h2>
+<div class="gamebox">
+<p><b>Siapa yang paling sayang sama kamu?</b></p>
+<button class="btn answer" onclick="answer()">Aku 😎</button>
+<button class="btn answer" onclick="answer()">Aku banget 🥹</button>
+<button class="btn answer" onclick="answer()">Jelas aku lah 😭</button>
+<div id="gameMsg"></div>
+</div>
+<div class="stickers">🎮 🐣 😂</div>
+</section>
+
+<section class="page p7">
+<div class="confetti" id="confetti"></div>
+<div class="sun">☀️</div>
+<h1>GOOD MORNING</h1>
+<h2>PRINCESS TERCANTIK 🌷💗</h2>
+<div class="card">
+<p>Jangan lupa sarapan, minum air, dan jangan terlalu capek hari ini yaa.</p>
+<p>Semoga semua urusan kamu dimudahkan dan hari kamu dipenuhi hal-hal kecil yang bikin kamu senyum. 🤍</p>
+<p><b>Have a beautiful day, princess! 🥹🎀</b></p>
+<button class="btn" onclick="surprise()">🎉 Buka Surprise 🎉</button>
+<div id="surpriseMsg"></div>
+</div>
+<div class="stickers">🧸 💐 🫶🏻 💕</div>
+</section>
+
+</div>
+
+<div class="nav">
+<button onclick="prevPage()">‹</button>
+<button onclick="nextPage()">›</button>
+</div>
+</div>
+
+<script>
+let current=0;
+const pages=document.getElementById('pages');
+function showPage(){
+  pages.style.transform=`translateX(-${current*(100/7)}%)`;
+}
+function nextPage(){if(current<6){current++;showPage()}}
+function prevPage(){if(current>0){current--;showPage()}}
+function wake(type){
+ const m=document.getElementById('alarmMsg');
+ if(type==='no') m.innerHTML='<p>❌ DITOLAK! BANGUN SEKARANGGG 😭☀️</p>';
+ else m.innerHTML='<p>✅ OKEEE, SELAMAT PAGI ORANG CANTIK! 💗</p>';
+}
+function answer(){
+ document.getElementById('gameMsg').innerHTML='🎉 BENAR! Semua jawaban benar karena jawabannya tetap: AKU 😎💗';
+}
+function surprise(){
+ const c=document.getElementById('confetti');
+ c.style.display='block';
+ c.innerHTML='';
+ for(let i=0;i<45;i++){
+   const s=document.createElement('span');
+   s.textContent=['🎉','💗','✨','🌸','🎀','☀️'][Math.floor(Math.random()*6)];
+   s.style.left=Math.random()*100+'%';
+   s.style.animationDelay=Math.random()*1.8+'s';
+   c.appendChild(s);
+ }
+ document.getElementById('surpriseMsg').innerHTML='<h2>HAPPY MORNING, PRINCESS TERCANTIK! 🥹💐💗</h2>';
+}
+showPage();
+</script>
+</body>
+</html>
